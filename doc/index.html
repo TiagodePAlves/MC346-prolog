@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Projeto</title>
+
+<link rel="stylesheet" type="text/css" href="pldoc.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+
+<h1 class="wiki">Projeto de Prolog - Paradigmas de Programação (MC346)</h1>
+
+<h2 class="wiki">Alunos</h2>
+
+<ul>
+<li>[Tiago de Paula Alves](mailto:t187679@dac.unicamp.br) (187679)</li>
+<li>[João Pedro de Amorim](mailto:j176131@dac.unicamp.br) (176131)</li>
+</ul>
+
+<h2 class="wiki">Enunciado do Projeto</h2>
+
+<p>
+Leia um arquivo pelo stdin no formato</p>
+
+<pre class="code" ext="prolog">
+[ circ(N,X1,Y1,R) , quad(M, X2, Y2,L), ... ].</pre>
+
+<p>
+onde</p>
+<ul>
+<li>X1, Y1 são as coordenadas do centro de um circulo de raio R, chamando N</li>
+<li>X2, Y2 são as coordenadas do centro de um quadrado com lado L, chamado M. O quadrado é paralelo aos eixos.</li>
+<li>e assim por diante.
+dado
+
+<pre class="code" ext="prolog">
+quad(a,1,2,10)</pre>
+
+<p>
+então os vertices do quadrado estão em</p>
+
+<pre class="code" ext="raw">
+-4,  7
+ 6,  7
+ 6, -3
+-4, -3</pre>
+
+<p>
+Note que o arquivo de entrada contem apenas um termo em Prolog (terminado por .) que é uma lista de estruturas.</p>
+
+<p>
+Imprima no stdout:</p></li>
+<li>a quantidade de pares de figuras geométricas que tem intercessão não vazia (tanto círculos como quadrados)</li>
+<li>e nas linha seguintes os nomes dos pares das figuras com interseção nao vazia, um por linha.
+Cuidado que se a figura A tem intercessao com o B isso só conta uma vez (ja que possivelmente o programa pode considerar que intercessão de A com B é diferente de B com A).
+
+<p>
+Também não se preocupe com regiões onde mais de 2 figuras fazer intercessão. Se 3 circulos (A e B e C) tem uma intercessão, o seu programa precisa contar apenas 3 (A com B), (A com C) e (B com C). O seu programa rodará da seguinte forma</p>
+
+<pre class="code" ext="bash">
+swipl -q -f seu-prog.pr -t topo  &lt; arqtestes.in</pre>
+
+<p>
+O que é importante é que o predicado topo (sem nenhum argumento) será o único predicado a ser chamado.</p></li>
+</ul>
+
+<h3 class="wiki">Dica</h3>
+
+<p>
+o central é definir quando 2 figuras tem alguma interceção, e há 3 definições: quadrado-quadrado, circulo-circulo e quadrado-circulo. Uma vez que voce definiu quando 2 figuras tem intercessão, obtenha todas as soluções possíveis para a intercessão.</p>
+
+<p>
+A intercessão de 2 circulos ou de 2 quadrados são mais faceis. A de um quadrado com um circulo um pouco mais trabalhosa.</p>
+
+<h2 class="wiki subdirs">Sub directories</h2>
+
+<table class="subdirs">
+<tr><td><a class="subdir" href="lib/index.html">[dir] lib</a></td></tr>
+</table>
+
+<h2 class="wiki plfiles">Prolog files</h2>
+
+<table class="summary">
+<tr><th colspan="3" class="file"><span style="float:left"><a href="make_doc.html">make_doc.pl</a></span><span style="float:right"></span></th></tr>
+<tr class="public"><td><a href="/pldoc/doc_for?object=adapt_extension/2">adapt_extension/2</a></td><td class="summary">Remove as extensão <code>.pl</code> de FullPath ou adiciona em FilePath.</td><td align="right"><span style="white-space: nowrap"></span></td></tr>
+<tr class="public"><td><a href="/pldoc/doc_for?object=css_body/1">css_body/1</a></td><td class="summary">Texto com atributos CSS a serem incluídos no estilo do documento.</td><td align="right"><span style="white-space: nowrap"></span></td></tr>
+<tr class="public"><td><a href="/pldoc/doc_for?object=edit_css/1">edit_css/1</a></td><td class="summary">Edita o arquivo <code>pldoc.css</code> em Path com os atributos de <a href="/pldoc/doc_for?object=user%3Acss_body/1">css_body/1</a>.</td><td align="right"><span style="white-space: nowrap"></span></td></tr>
+<tr class="public"><td><a href="/pldoc/doc_for?object=make_doc/0">make_doc/0</a></td><td class="summary">Cria a documentação dos arquivos e edita o CSS dela.</td><td align="right"><span style="white-space: nowrap"></span></td></tr>
+<tr class="public"><td><a href="/pldoc/doc_for?object=subdirs_prolog_files/1">subdirs_prolog_files/1</a></td><td class="summary">Lista os arquivos com código-fonte de Prolog.</td><td align="right"><span style="white-space: nowrap"></span></td></tr>
+</table>
+
+</body>
+</html>
