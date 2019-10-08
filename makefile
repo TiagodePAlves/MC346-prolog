@@ -1,10 +1,10 @@
 SWI ?= swipl -q
 
 
-.PHONY: doc
+.PHONY: docs
 
 
-doc: runpl-make_doc
+docs: runpl-make_docs
 
 runpl-%: %.pl
 	$(SWI) -t $(patsubst %.pl,%,$<) $<

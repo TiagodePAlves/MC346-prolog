@@ -44,6 +44,6 @@ edit_css(Path) :-
 %
 %   Cria a documentação dos arquivos e edita o
 %   CSS dela.
-make_doc :-
-    doc_save(., [recursive(true), doc_root(doc)]),
-    edit_css(doc).
+make_docs :-
+    doc_save(., [recursive(true), doc_root(docs)]),
+    edit_css(docs).
