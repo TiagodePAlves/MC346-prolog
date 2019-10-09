@@ -1,10 +1,20 @@
 SWI ?= swipl -q
 
+DOCS ?= docs
+SWIURL ?= www.swi-prolog.org
 
-.PHONY: docs
+
+.PHONY: clear doc
 
 
-docs: runpl-make_docs
+doc: clear $(DOCS) $(DOCS)/favicon.ico
 
-runpl-%: %.pl
-	$(SWI) -t $(patsubst %.pl,%,$<) $<
+
+$(DOCS): doc.pl
+	$(SWI) -t run $<
+
+%.ico:
+	wget -q -P $(dir $@) $(SWIURL)/icons/$(notdir $@)
+
+clear:
+	rm -rf $(DOCS)

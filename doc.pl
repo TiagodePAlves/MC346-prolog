@@ -1,4 +1,4 @@
-%!  adapt_extension(?FullPath, ?FilePath) is nondet.
+%!  adapt_extension(?FullPath, ?FilePath) is semidet.
 %
 %   Remove as extensão =|.pl|= de FullPath ou
 %   adiciona em FilePath.
@@ -6,7 +6,7 @@ adapt_extension(FullPath, FilePath) :-
     file_name_extension(FilePath, ".pl", FullPath).
 
 
-%!  subdirs_prolog_files(-Files) is nondet.
+%!  subdirs_prolog_files(-Files) is det.
 %
 %   Lista os arquivos com código-fonte de Prolog.
 subdirs_prolog_files(Files) :-
@@ -14,7 +14,9 @@ subdirs_prolog_files(Files) :-
     maplist(adapt_extension, SourceFiles, Files).
 
 
+%   Carrega os arquivos para a documentação.
 :- subdirs_prolog_files(Files), load_files(Files).
+
 
 
 %!  css_body(-CSS) is det.
@@ -29,7 +31,7 @@ body {
 ").
 
 
-%!  edit_css(++Path) is nondet.
+%!  edit_css(++Path) is semidet.
 %
 %   Edita o arquivo =pldoc.css= em Path com
 %   os atributos de css_body/1.
@@ -40,10 +42,10 @@ edit_css(Path) :-
     close(CSSFile).
 
 
-%!  make_doc is nondet.
+%!  run is semidet.
 %
 %   Cria a documentação dos arquivos e edita o
 %   CSS dela.
-make_docs :-
+run :-
     doc_save(., [recursive(true), doc_root(docs)]),
     edit_css(docs).

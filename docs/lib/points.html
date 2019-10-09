@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>point.pl -- Aritmética de pontos e retas</title>
+<title>points.pl -- Aritmética de pontos e retas</title>
 
 <link rel="stylesheet" type="text/css" href="../pldoc.css">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -10,22 +10,26 @@
 <body>
 
 
-<h1 class="file"><span style="float:right"></span>point.pl -- Aritmética de pontos e retas</h1>
+<h1 class="file"><span style="float:right"></span>points.pl -- Aritmética de pontos e retas</h1>
 
 <p>
 Este módulo descreve algumas operações fundamentais
 relacionadas a pontos, retas e segmentos de retas.</p>
 
+<p>
+As operações são adição, subtração, multiplicação
+por escalar, norma e distância.</p>
+
 <dl>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="as/2"><var class="arglist">-Result</var> <b class="pred">as</b> <var class="arglist">:Goal</var></a></dt><dd class="defbody">Funciona como <a class="builtin" href="http://www.swi-prolog.org/pldoc/man?predicate=is/2">is/2</a>, aplicando <var>Goal</var> com <var>Result</var>. É útil
-com funções aritméticas e relacionadas, que normalmente
-tem um resultado esperado.
+com funções aritméticas relacionadas a pontos e retas.
+Em geral, ela só deve funcionar com operações deste módulo.
 
 <p>
 A única diferença dessa função é que a unificação com o
 valor exato não é necessária, então ela funciona com
 estruturas além de números e pode funcionar com regras
-não aritméticas, apesar de não ser recomendável.</p></dd>
+não aritméticas.</p></dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="norm/3"><b class="pred">norm</b><var class="arglist">(++N, +Point, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Encontra a norma <var>N</var> de <var>Point</var>. Se <var>N</var> é <code>inf</code> ou <code>infinite</code>,
 calcula a norma uniforme.
 
@@ -41,14 +45,14 @@ true.</pre>
 
 </dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="norm/2"><b class="pred">norm</b><var class="arglist">(+Point, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Encontra a norma euclidiana de <var>Point</var>. É o mesmo que
-<a href="point.html#norm/3">norm/3</a>, com N = 2.
+<a href="points.html#norm/3">norm/3</a>, com N = 2.
 
 <dl class="tags">
 <dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm">https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm</a></dd>
 </dl>
 
 </dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="+/3"><b class="pred">+</b><var class="arglist">(+Point, +Point, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Soma de pontos, normalmente usada com <a href="point.html#(as)/2">as/2</a>.
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="+/3"><b class="pred">+</b><var class="arglist">(+Point, +Point, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Soma de pontos, normalmente usada com <a href="points.html#(as)/2">as/2</a>.
 
 <pre class="code" ext="">
 ?- S as (1, 2) + (3, 4).
@@ -56,7 +60,7 @@ S = (4, 6).</pre>
 
 <p>
 As dimensões de <var>Result</var> são unificadas com o resultado numérico.</p></dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="-/3"><b class="pred">-</b><var class="arglist">(+Point, +Point, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Subtração de pontos, normalmente usada com <a href="point.html#(as)/2">as/2</a>.
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="-/3"><b class="pred">-</b><var class="arglist">(+Point, +Point, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Subtração de pontos, normalmente usada com <a href="points.html#(as)/2">as/2</a>.
 
 <pre class="code" ext="">
 ?- S as (4, 2) - (1, 3).
@@ -66,7 +70,7 @@ S = (3, -1).</pre>
 As dimensões de <var>Result</var> são unificadas com o resultado numérico.</p></dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="*/3"><b class="pred">*</b><var class="arglist">(+Alpha, +Point, -Result)</var></a> is <b class="det">det</b></dt>
 <dt class="pubdef"><b class="pred">*</b><var class="arglist">(+Point, +Alpha, -Result)</var> is <b class="det">det</b></dt><dd class="defbody">Multiplicação de um ponto por um escalar,
-normalmente usada com <a href="point.html#(as)/2">as/2</a>.
+normalmente usada com <a href="points.html#(as)/2">as/2</a>.
 
 <pre class="code" ext="">
 ?- M as 2 * (1, 2), N as (1, 2) * 2.
@@ -91,19 +95,19 @@ X = 1.4142135623730951.
 X = 1.</pre>
 
 <dl class="tags">
-<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="point.html#norm/3">norm/3</a></dd>
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="points.html#norm/3">norm/3</a></dd>
 </dl>
 
 </dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="distance/3"><b class="pred">distance</b><var class="arglist">(+Point, +PointOrLine, -Result)</var></a> is <b class="det">det</b></dt><dd class="defbody">Calcula a distância euclidiana de um ponto à outro ou à
-uma reta. Similar a <a href="point.html#distance/4">distance/4</a> com N = 2.
+uma reta. Similar a <a href="points.html#distance/4">distance/4</a> com N = 2.
 
 <pre class="code" ext="">
 ?- X as distance((0, 0), (1, 1)).
 X = 1.4142135623730951.</pre>
 
 <dl class="tags">
-<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="point.html#distance/4">distance/4</a></dd><dd class="keyword-see">- <a href="https://en.wikipedia.org/wiki/Euclidean_distance">https://en.wikipedia.org/wiki/Euclidean_distance</a></dd>
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="https://en.wikipedia.org/wiki/Euclidean_distance">https://en.wikipedia.org/wiki/Euclidean_distance</a></dd>
 </dl>
 
 </dd>

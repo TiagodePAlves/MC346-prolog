@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lists.pl</title>
+
+<link rel="stylesheet" type="text/css" href="../pldoc.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+
+<h1 class="file"><span style="float:right"></span>lists.pl</h1>
+
+<dl>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="shape_intersections/2"><b class="pred">shape_intersections</b><var class="arglist">(+NamedShapes, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Encontra as intersecções entre todos os <var>NamedShapes</var>. Um
+<code>NamedShape</code> é do tipo <code>Name:Shape</code> e um intersecção é
+<code>Name-Name</code>.
+
+<pre class="code" ext="">
+?- shape_intersections([a:circle((0, 0), 1), b:square((1, 1), 1), c:circle((2, -2), 1)], X).
+X = [a-b].</pre>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="list_solver/3"><b class="pred">list_solver</b><var class="arglist">(+Figures, -Length, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas. Wrapper sobre
+<a href="/pldoc/doc_for?object=user%3Ashape_intersections/2">shape_intersections/2</a>.
+
+<pre class="code" ext="">
+?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
+N = 1,
+X = [a-b].</pre>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="topo/0"><b class="pred">topo</b></a> is <b class="det">semidet</b></dt><dd class="defbody">Resolve o problema com a entrada e saída padrão.</dd>
+</dl>
+
+</body>
+</html>
