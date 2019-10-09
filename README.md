@@ -1,9 +1,11 @@
 # Projeto de Prolog - Paradigmas de Programação (MC346)
 
+[![Documentação: GitHub Pages](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-GitHub%20Pages-blueviolet "Documentação")](https://tiagodepalves.github.io/MC346-prolog/index.html)
+
 ## Alunos
 
-- [Tiago de Paula Alves](mailto:t187679@dac.unicamp.br) (187679)
-- [João Pedro de Amorim](mailto:j176131@dac.unicamp.br) (176131)
+- [Tiago de Paula Alves](mailto:t187679@dac.unicamp.br "t187679@dac.unicamp.br") (187679)
+- [João Pedro de Amorim](mailto:j176131@dac.unicamp.br "j176131@dac.unicamp.br") (176131)
 
 ## Enunciado do Projeto
 

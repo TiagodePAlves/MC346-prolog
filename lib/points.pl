@@ -1,29 +1,31 @@
-:- module(point, [
+:- module(points, [
     op(900, xfx, as), as/2,
     (-)/3, (+)/3, (*)/3,
-    norm/2, norm/3, distance/3, distance/4
+    norm/2, norm/3,
+    distance/3, distance/4
 ]).
 
 /** <module> Aritmética de pontos e retas
 
 Este módulo descreve algumas operações fundamentais
 relacionadas a pontos, retas e segmentos de retas.
-*/
 
+As operações são adição, subtração, multiplicação
+por escalar, norma e distância.
+*/
 
 
 %!  -Result as :Goal.
 %
 %   Funciona como is/2, aplicando Goal com Result. É útil
-%   com funções aritméticas e relacionadas, que normalmente
-%   tem um resultado esperado.
+%   com funções aritméticas relacionadas a pontos e retas.
+%   Em geral, ela só deve funcionar com operações deste módulo.
 %
 %   A única diferença dessa função é que a unificação com o
 %   valor exato não é necessária, então ela funciona com
 %   estruturas além de números e pode funcionar com regras
-%   não aritméticas, apesar de não ser recomendável.
+%   não aritméticas.
 Result as Goal :- call(Goal, Result).
-
 
 
 %!  norm(++N, +Point, -Result) is det.
@@ -45,8 +47,10 @@ norm(infinite) --> !, norm(inf).
 norm(inf, (X, Y), Result) :- !,
     Result is max(abs(X), abs(Y)).
 norm(2, (X, Y), Result) :- !,
+    % pequena otimização para norma 2, que será
+    % a mais utilizada
     Result is sqrt(X*X + Y*Y).
-norm(N, (X, Y), Result) :- !,
+norm(N, (X, Y), Result) :-
     Result is (abs(X)**N + abs(Y)**N)**(1/N).
 
 %!  norm(+Point, -Result) is det.
@@ -56,7 +60,7 @@ norm(N, (X, Y), Result) :- !,
 %
 %   @see https://en.wikipedia.org/wiki/Norm_(mathematics)#Euclidean_norm
 
-norm --> !, norm(2).
+norm --> norm(2).
 
 
 
@@ -101,7 +105,7 @@ norm --> !, norm(2).
 %
 %   As dimensões de Result são unificadas com o resultado numérico.
 
-*(Alpha, (X, Y), (AX, AY)) :- !,
+*(Alpha, (X, Y), (AX, AY)) :-
     AX is Alpha * X, AY is Alpha * Y.
 *((X, Y), Alpha, Result) :-
     Result as Alpha * (X, Y).
@@ -123,11 +127,17 @@ norm --> !, norm(2).
 %   X = 0.
 %   ==
 
-capped(XA, XB, X, Result) :- !,
+capped(XA, XB, X, Result) :-
     (XA < XB -> Lim = (XA, XB); Lim = (XB, XA)),
     Result as capped(Lim, X).
 
-capped((Xmin, Xmax), X, Result) :- !,
+%!  capped(+Limits:tuple, +Value, -Result) is det.
+%
+%   Função auxiliar de capped/4. Assume que os
+%   limites da tupla estão ordenados, =| Limits
+%   = (Xmin, Xmax), Xmin =< Xmax |=.
+
+capped((Xmin, Xmax), X, Result) :-
     X < Xmin -> Result is Xmin;
     X > Xmax -> Result is Xmax;
     Result is X.
@@ -180,8 +190,6 @@ distance(N, (X, Y), hsegment(YL, Xmin, Xmax), Result) :- !,
 %   X = 1.4142135623730951.
 %   ==
 %
-%   @see distance/4
 %   @see https://en.wikipedia.org/wiki/Euclidean_distance
 
 distance(A, B, Result) :- distance(2, A, B, Result).
-
