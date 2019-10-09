@@ -1,6 +1,6 @@
 # Projeto de Prolog - Paradigmas de Programação (MC346)
 
-[![Documentação: GitHub Pages](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-GitHub%20Pages-blueviolet "Documentação")](https://tiagodepalves.github.io/MC346-prolog/index.html)
+[![Documentação: GitHub Pages](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-GitHub%20Pages-blueviolet "Documentação")](https://tiagodepalves.github.io/MC346-prolog/)
 
 ## Alunos
 

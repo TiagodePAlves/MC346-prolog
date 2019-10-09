@@ -4,8 +4,11 @@ DOCS ?= docs
 SWIURL ?= www.swi-prolog.org
 
 
-.PHONY: clear doc
+.PHONY: run clear doc
 
+
+run: run.pl
+	@$(SWI) -t topo $<
 
 doc: clear $(DOCS) $(DOCS)/favicon.ico
 

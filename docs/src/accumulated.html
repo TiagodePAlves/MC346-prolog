@@ -12,5 +12,27 @@
 
 <h1 class="file"><span style="float:right"></span>accumulated.pl</h1>
 
+<dl>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="intersections/3"><b class="pred">intersections</b><var class="arglist">(+NamedShapes, -Intersections, -Length)</var></a> is <b class="det">det</b></dt><dd class="defbody">Encontra as intersecções entre todos os <var>NamedShapes</var>. Um
+<code>NamedShape</code> é do tipo <code>Name:Shape</code> e um intersecção é
+<code>Name-Name</code>.
+
+<pre class="code" ext="">
+?- intersections([a:circle((0, 0), 1), b:square((1, 1), 1), c:circle((2, -2), 1)], X, N).
+X = [a-b],
+N = 1.</pre>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="accumulated_solver/3"><b class="pred">accumulated_solver</b><var class="arglist">(+Figures, -Length, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas. Wrapper sobre
+<a href="/pldoc/doc_for?object=user%3Aintersections/3">intersections/3</a>.
+
+<pre class="code" ext="">
+?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
+N = 1,
+X = [a-b].</pre>
+
+</dd>
+</dl>
+
 </body>
 </html>

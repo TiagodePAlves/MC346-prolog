@@ -9,7 +9,7 @@ adapt_extension(FullPath, FilePath) :-
 %!  subdirs_prolog_files(-Files) is det.
 %
 %   Lista os arquivos com código-fonte de Prolog.
-subdirs_prolog_files(Files) :-
+subdirs_prolog_files([run|Files]) :-
     expand_file_name("*/*.pl", SourceFiles),
     maplist(adapt_extension, SourceFiles, Files).
 

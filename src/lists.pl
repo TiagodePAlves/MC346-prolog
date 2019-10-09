@@ -34,12 +34,3 @@ list_solver(Figures, Length, Intersections) :-
     maplist(as_shape, Figures, Shapes),
     shape_intersections(Shapes, Intersections),
     length(Intersections, Length).
-
-%!  topo is semidet.
-%
-%   Resolve o problema com a entrada e saída padrão.
-topo :-
-    read(Figures),
-    list_solver(Figures, Length, Intersections),
-    writeln(Length),
-    maplist(writeln, Intersections).
