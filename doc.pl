@@ -27,6 +27,7 @@ css_body("
 body {
   margin: auto;
   max-width: 50em;
+  background-color: #ecebe3;
 }
 ").
 
