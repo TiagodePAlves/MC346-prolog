@@ -36,7 +36,7 @@ intersections(_, [], Acc, N, Acc, N) :- !.
 %   intersections/3.
 %
 %   ==
-%   ?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
+%   ?- accumulated_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
 %   N = 1,
 %   X = [a-b].
 %   ==
