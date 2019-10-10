@@ -87,4 +87,5 @@ database_solver(Figures, Intersections, Length) :-
 
 database_solver(Figures, Intersections) :-
     maplist(call, Figures),
+    compile_predicates([shape/2]),
     findall(X-Y, ordered_intersection(X, Y), Intersections).
