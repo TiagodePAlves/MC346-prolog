@@ -12,7 +12,6 @@
 %   X = [a-b],
 %   N = 1.
 %   ==
-
 intersections(Shapes, Intersections, Length) :- !,
     intersections(Shapes, [], 0, Intersections, Length).
 
@@ -23,7 +22,7 @@ intersections([], Acc, N, Acc, N) :- !.
 
 intersections(NameA: A, [NameB: B|Shapes], Acc, N, Accn, Nn) :- !,
     (
-        A intersect B -> Accx = [NameA-NameB|Acc], Nx is N + 1
+        A intersect_with B -> Accx = [NameA-NameB|Acc], Nx is N + 1
         ; Accx = Acc, Nx is N
     ),
     intersections(NameA: A, Shapes, Accx, Nx, Accn, Nn).
@@ -41,7 +40,6 @@ intersections(_, [], Acc, N, Acc, N) :- !.
 %   N = 1,
 %   X = [a-b].
 %   ==
-
 accumulated_solver(Figures, Length, Intersections) :-
     maplist(as_shape, Figures, Shapes),
     intersections(Shapes, Intersections, Length).

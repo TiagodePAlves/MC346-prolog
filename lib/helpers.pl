@@ -19,7 +19,7 @@
 %   Intersection = a-b.
 %   ==
 named_intersection(NameA: ShapeA, NameB: ShapeB, NameA - NameB) :-
-    intersect(ShapeA, ShapeB).
+    ShapeA intersect_with ShapeB.
 
 
 %!  as_shape(?Object, ?NamedShape) is det.
