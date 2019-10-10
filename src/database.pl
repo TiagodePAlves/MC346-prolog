@@ -1,6 +1,14 @@
 :- use_module(library(intersections)).
 
 
+%!  shape(+Name, +Shape)
+%
+%   Verdade se existe uma figura Shape associada
+%   a Name.
+%
+%   Fato dinâmico.
+:- dynamic(shape/2, [thread(local)]).
+
 %!  circ(+Name, +X, +Y, +R) is det.
 %
 %   Registra um círculo no banco de dados do prolog.
@@ -35,6 +43,7 @@ circ(Name, X, Y, R) :-
 quad(Name, X, Y, L) :-
     asserta(shape(Name, square((X, Y), L))).
 
+
 %!  intersection(?NameA, ?NameB)
 %
 %   Verdade se existe uma figura com nome NameA
@@ -52,32 +61,30 @@ intersection(A, B) :-
 ordered_intersection(A, B) :-
     intersection(A, B), A @< B.
 
-%!  count(:Goal, ?Count) is det.
-%
-%   Verdade se Count é igual a quantidade de vezes que Goal
-%   é verdade.
-%
-%   ==
-%   ?- count(member(X, [a, b, c]), L).
-%   L = 3.
-%   ==
-%
-%   @see aggregate_all/3
-count(Goal, Count) :-
-    aggregate_all(count, Goal, Count).
 
-
-%!  database_solver(+Figures, -Length, -Intersections) is det.
+%!  database_solver(+Figures, -Intersections, -Length) is det.
 %
-%   Resolve o problema para as figuras dadas, utilizando
-%   o banco de fatos e regras de Prolog.
+%   Resolve o problema para as figuras dadas e
+%   resolve o tamanho da solução também.
 %
 %   ==
 %   ?- database_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
 %   N = 1,
 %   X = [a-b].
 %   ==
-database_solver(Figures, Length, Intersections) :-
+
+database_solver(Figures, Intersections, Length) :-
+    database_solver(Figures, Intersections),
+    aggregate_all(count, ordered_intersection(_X, _Y), Length).
+
+%!  database_solver(+Figures, -Intersections) is det.
+%
+%   Resolve o problema para as figuras dadas, utilizando
+%   o banco de fatos e regras de Prolog. Esta versão já
+%   resolve o tamanho da solução também.
+%
+%   @see database_solver/2
+
+database_solver(Figures, Intersections) :-
     maplist(call, Figures),
-    count(ordered_intersection(X, Y), Length),
     findall(X-Y, ordered_intersection(X, Y), Intersections).

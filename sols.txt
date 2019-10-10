@@ -1,0 +1,8 @@
+[
+    hlpnu-ihubu,
+    hlpnu-iyzia,
+    hlpnu-lfxud,
+    ihubu-iyzia,
+    iyzia-lfxud,
+    lfxud-nrknw
+].

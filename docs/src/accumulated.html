@@ -23,13 +23,20 @@ X = [a-b],
 N = 1.</pre>
 
 </dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="accumulated_solver/3"><b class="pred">accumulated_solver</b><var class="arglist">(+Figures, -Length, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas. Wrapper sobre
-<a href="/pldoc/doc_for?object=user%3Aintersections/3">intersections/3</a>.
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="accumulated_solver/3"><b class="pred">accumulated_solver</b><var class="arglist">(+Figures, -Intersections, -Length)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas, junto com
+o tamanho. Wrapper sobre <a href="/pldoc/doc_for?object=user%3Aintersections/3">intersections/3</a>.
 
 <pre class="code" ext="">
 ?- accumulated_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
 N = 1,
 X = [a-b].</pre>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="accumulated_solver/2"><b class="pred">accumulated_solver</b><var class="arglist">(+Figures, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="/pldoc/doc_for?object=user%3Aaccumulated_solver/3">accumulated_solver/3</a></dd>
+</dl>
 
 </dd>
 </dl>

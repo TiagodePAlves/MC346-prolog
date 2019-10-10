@@ -22,12 +22,20 @@
 X = [a-b].</pre>
 
 </dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="list_solver/3"><b class="pred">list_solver</b><var class="arglist">(+Figures, -Length, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas. Wrapper sobre
-<a href="/pldoc/doc_for?object=user%3Ashape_intersections/2">shape_intersections/2</a>.
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="list_solver/3"><b class="pred">list_solver</b><var class="arglist">(+Figures, -Intersections, -Length)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas, porém com o tamanho
+já resolvido.
 
 <pre class="code" ext="">
 ?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
 N = 1,
+X = [a-b].</pre>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="list_solver/2"><b class="pred">list_solver</b><var class="arglist">(+Figures, -Intersections)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas. Wrapper sobre
+<a href="/pldoc/doc_for?object=user%3Ashape_intersections/2">shape_intersections/2</a>.
+
+<pre class="code" ext="">
+?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], X).
 X = [a-b].</pre>
 
 </dd>

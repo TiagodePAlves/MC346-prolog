@@ -19,10 +19,10 @@ shape_intersections([This|Shapes], Intersections) :-
 shape_intersections([], []).
 
 
-%!  list_solver(+Figures, -Length, -Intersections) is det.
+%!  list_solver(+Figures, -Intersections, -Length) is det.
 %
-%   Resolve o problema para as figuras dadas. Wrapper sobre
-%   shape_intersections/2.
+%   Resolve o problema para as figuras dadas, porém com o tamanho
+%   já resolvido.
 %
 %   ==
 %   ?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], N, X).
@@ -30,7 +30,20 @@ shape_intersections([], []).
 %   X = [a-b].
 %   ==
 
-list_solver(Figures, Length, Intersections) :-
-    maplist(as_shape, Figures, Shapes),
-    shape_intersections(Shapes, Intersections),
+list_solver(Figures, Intersections, Length) :-
+    list_solver(Figures, Intersections),
     length(Intersections, Length).
+
+%!  list_solver(+Figures, -Intersections) is det.
+%
+%   Resolve o problema para as figuras dadas. Wrapper sobre
+%   shape_intersections/2.
+%
+%   ==
+%   ?- list_solver([circ(a, 0, 0, 1), quad(b, 1, 1, 1), circ(c, 2, -2, 1)], X).
+%   X = [a-b].
+%   ==
+
+list_solver(Figures, Intersections) :-
+    maplist(as_shape, Figures, Shapes),
+    shape_intersections(Shapes, Intersections).

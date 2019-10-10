@@ -16,6 +16,6 @@ solver(dbs, database_solver) :- !.
 topo :-
     read(Figures),
     solver(dbs, Solver),
-    call(Solver, Figures, Length, Intersections),
+    call(Solver, Figures, Intersections, Length),
     writeln(Length),
     maplist(writeln, Intersections).
