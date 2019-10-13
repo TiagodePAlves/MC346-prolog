@@ -13,47 +13,13 @@
 <h1 class="file"><span style="float:right"></span>database.pl</h1>
 
 <dl>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="shape/2"><b class="pred">shape</b><var class="arglist">(+Name, +Shape)</var></a></dt><dd class="defbody">Verdade se existe uma figura <var>Shape</var> associada
-a <var>Name</var>.
-
-<p>
-Fato dinâmico.</p></dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="circ/4"><b class="pred">circ</b><var class="arglist">(+Name, +X, +Y, +R)</var></a> is <b class="det">det</b></dt><dd class="defbody">Registra um círculo no banco de dados do prolog.
-
-<pre class="code" ext="">
-?- shape(a, X).
-ERROR: Undefined procedure: shape/2 (DWIM could not correct goal)
-?- circ(a, 0, 0, 1).
-true.
-?- shape(a, X).
-X = circle((0, 0), 1).</pre>
-
-<dl class="tags">
-<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a class="builtin" href="http://www.swi-prolog.org/pldoc/man?predicate=asserta/1">asserta/1</a></dd>
-</dl>
-
-</dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="quad/4"><b class="pred">quad</b><var class="arglist">(+Name, +X, +Y, +R)</var></a> is <b class="det">det</b></dt><dd class="defbody">Registra um quadrado no banco de dados do prolog.
-
-<pre class="code" ext="">
-?- shape(a, X).
-ERROR: Undefined procedure: shape/2 (DWIM could not correct goal)
-?- quad(a, 0, 0, 1).
-true.
-?- shape(a, X).
-X = aquare((0, 0), 1).</pre>
-
-<dl class="tags">
-<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a class="builtin" href="http://www.swi-prolog.org/pldoc/man?predicate=asserta/1">asserta/1</a></dd>
-</dl>
-
-</dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="intersection/2"><b class="pred">intersection</b><var class="arglist">(?NameA, ?NameB)</var></a></dt><dd class="defbody">Verdade se existe uma figura com nome <var>NameA</var>
 e outra com <var>NameB</var> e elas têm intersecção
 não vazia.</dd>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="ordered_intersection/2"><b class="pred">ordered_intersection</b><var class="arglist">(?NameA, ?NameB)</var></a></dt><dd class="defbody">Parecido com <a href="/pldoc/doc_for?object=user%3Aintersection/2">intersection/2</a>, mas para ser verdade
-também é preciso que <var>NameA</var> seja lexigraficamente
-menor que <var>NameB</var>.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="shape/2"><b class="pred">shape</b><var class="arglist">(+Name, +Shape)</var></a></dt><dd class="defbody">Verdade se existe uma figura <var>Shape</var> associada
+a <var>Name</var>.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="insert_shape/2"><b class="pred">insert_shape</b><var class="arglist">(+Name, +Shape)</var></a></dt><dd class="defbody">Insere a figura no banco de dados e suas intersecções.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="insert_shape/1"><b class="pred">insert_shape</b><var class="arglist">(+NamedShape)</var></a></dt><dd class="defbody">Funciona como <a href="/pldoc/doc_for?object=user%3Ainsert_shape/2">insert_shape/2</a>, mas quebra o <var>NamedShape</var> antes.</dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="database_solver/3"><b class="pred">database_solver</b><var class="arglist">(+Figures, -Intersections, -Length)</var></a> is <b class="det">det</b></dt><dd class="defbody">Resolve o problema para as figuras dadas e
 resolve o tamanho da solução também.
 

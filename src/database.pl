@@ -1,65 +1,38 @@
 :- use_module(library(intersections)).
 
 
-%!  shape(+Name, +Shape)
-%
-%   Verdade se existe uma figura Shape associada
-%   a Name.
-%
-%   Fato dinâmico.
-:- dynamic(shape/2, [thread(local)]).
-
-%!  circ(+Name, +X, +Y, +R) is det.
-%
-%   Registra um círculo no banco de dados do prolog.
-%
-%   ==
-%   ?- shape(a, X).
-%   ERROR: Undefined procedure: shape/2 (DWIM could not correct goal)
-%   ?- circ(a, 0, 0, 1).
-%   true.
-%   ?- shape(a, X).
-%   X = circle((0, 0), 1).
-%   ==
-%
-%   @see asserta/1
-circ(Name, X, Y, R) :-
-    asserta(shape(Name, circle((X, Y), R))).
-
-%!  quad(+Name, +X, +Y, +R) is det.
-%
-%   Registra um quadrado no banco de dados do prolog.
-%
-%   ==
-%   ?- shape(a, X).
-%   ERROR: Undefined procedure: shape/2 (DWIM could not correct goal)
-%   ?- quad(a, 0, 0, 1).
-%   true.
-%   ?- shape(a, X).
-%   X = aquare((0, 0), 1).
-%   ==
-%
-%   @see asserta/1
-quad(Name, X, Y, L) :-
-    asserta(shape(Name, square((X, Y), L))).
-
 
 %!  intersection(?NameA, ?NameB)
 %
 %   Verdade se existe uma figura com nome NameA
 %   e outra com NameB e elas têm intersecção
 %   não vazia.
-intersection(A, B) :-
-    shape(A, ShapeA), shape(B, ShapeB),
-    ShapeA intersect_with ShapeB.
+:- dynamic(intersection/2, [thread(local)]).
 
-%!  ordered_intersection(?NameA, ?NameB)
+%!  shape(+Name, +Shape)
 %
-%   Parecido com intersection/2, mas para ser verdade
-%   também é preciso que NameA seja lexigraficamente
-%   menor que NameB.
-ordered_intersection(A, B) :-
-    intersection(A, B), A @< B.
+%   Verdade se existe uma figura Shape associada
+%   a Name.
+:- dynamic(shape/2, [thread(local)]).
+
+%!  insert_shape(+Name, +Shape)
+%
+%   Insere a figura no banco de dados e suas intersecções.
+insert_shape(Name, Shape) :-
+    foreach(shape(NameB, ShapeB), (
+        Shape intersect_with ShapeB ->
+            asserta(intersection(Name, NameB))
+        ; true
+    )),
+    asserta(shape(Name, Shape)).
+
+%!  insert_shape(+NamedShape)
+%
+%   Funciona como insert_shape/2, mas quebra o NamedShape antes.
+insert_shape(circ(Name, X, Y, R)) :-
+    insert_shape(Name, circle((X, Y), R)).
+insert_shape(quad(Name, X, Y, R)) :-
+    insert_shape(Name, square((X, Y), R)).
 
 
 %!  database_solver(+Figures, -Intersections, -Length) is det.
@@ -72,10 +45,9 @@ ordered_intersection(A, B) :-
 %   N = 1,
 %   X = [a-b].
 %   ==
-
 database_solver(Figures, Intersections, Length) :-
     database_solver(Figures, Intersections),
-    aggregate_all(count, ordered_intersection(_X, _Y), Length).
+    aggregate_all(count, intersection(_X, _Y), Length).
 
 %!  database_solver(+Figures, -Intersections) is det.
 %
@@ -84,7 +56,6 @@ database_solver(Figures, Intersections, Length) :-
 %   resolve o tamanho da solução também.
 %
 %   @see database_solver/2
-
 database_solver(Figures, Intersections) :-
-    maplist(call, Figures),
-    findall(X-Y, ordered_intersection(X, Y), Intersections).
+    maplist(insert_shape, Figures),
+    findall(X-Y, intersection(X, Y), Intersections).
