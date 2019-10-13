@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from sympy import Rational, geometry as geo
+from numpy import sqrt
 from matplotlib import patches, axes
 from itertools import combinations
 from typing import Tuple, Iterator, Type, Union, Iterable
@@ -22,13 +23,11 @@ class Figure:
     def radius(self) -> float:
         return float(self.shape.radius)
 
-    def intersect_with(self, other) -> bool:
-        if geo.intersection(self.shape, other.shape):
-            return True
-        elif self.shape.encloses(other.shape):
-            return True
-        else:
-            return other.shape.encloses(self.shape)
+    def distance(self, point: Tuple[float, float]) -> float:
+        raise NotImplementedError
+
+    def intersect_with(self, other: Figure) -> bool:
+        raise NotImplementedError
 
     @staticmethod
     def parse_float(value: float, prec=5) -> str:
@@ -93,6 +92,17 @@ class Circle(Figure):
         kwargs['label'] = self.name
         return patches.Circle(self.center, self.radius, **kwargs)
 
+    def distance(self, point: Tuple[float, float]) -> float:
+        cx, cy = self.center
+        px, py = point
+
+        dist = sqrt((px - cx)**2 + (py - cy)**2)
+        dist = max(0, dist - self.radius)
+        return dist
+
+    def intersect_with(self, other: Figure) -> bool:
+        return other.distance(self.center) <= self.radius
+
 
 class Square(Figure):
     shape_name = "quad"
@@ -108,3 +118,39 @@ class Square(Figure):
     def as_patch(self, **kwargs) -> patches.Patch:
         kwargs['label'] = self.name
         return patches.Rectangle(tuple(x - self.radius/2 for x in self.center), self.radius, self.radius, **kwargs)
+
+    @staticmethod
+    def closest_dim(limit: float, center: float, val: float) -> float:
+        if val > center + limit:
+            return center + limit
+        elif val < center - limit:
+            return center - limit
+        else:
+            return val
+
+    def closest_point(self, point: Tuple[float, float]) -> Tuple[float, float]:
+        r = self.radius
+        cx, cy = self.center
+        px, py = point
+
+        dx = self.closest_dim(r/2, cx, px)
+        dy = self.closest_dim(r/2, cy, py)
+        return dx, dy
+
+    def distance(self, point: Tuple[float, float]) -> float:
+        cx, cy = self.closest_point(point)
+        px, py = point
+
+        return sqrt((cx - px)**2 + (cy - py)**2)
+
+    def intersect_with(self, other: Figure) -> bool:
+        cx, cy = self.closest_point(other.center)
+        ox, oy = other.center
+        dx, dy = cx - ox, cy - oy
+
+        if other.shape_name == self.shape_name:
+            dist = max(abs(dx), abs(dy))
+            return dist <= other.radius/2
+        else:
+            dist = sqrt(dx**2 + dy**2)
+            return dist <= other.radius

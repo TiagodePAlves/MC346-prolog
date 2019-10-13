@@ -1,5 +1,5 @@
 from shapes import Figure, solve
-from format import writelines, to_prolog_lines
+from plformat import writelines, to_prolog_lines
 
 from sympy import geometry as geo
 from random import choice, choices, uniform
@@ -34,7 +34,8 @@ def radii(max: float) -> Iterator[float]:
 
 def figures(max_distance: float, max_radius: float, name_length: int) -> Iterator[Figure]:
     def from_shape(shape, name: str, center: Tuple[float, float], radius: float) -> Figure:
-        return shape(name, center[0], center[1], radius)
+        fig = shape(name, center[0], center[1], radius)
+        return Figure.any_from_str(str(fig))
 
     figure_parts = zip(shapes(), names(name_length), points(max_distance), radii(max_radius))
     return starmap(from_shape, figure_parts)
@@ -54,7 +55,7 @@ def args_parse(N=10, L=5, D=10.0, R=1.0) -> Dict[str, Any]:
     parser.add_argument('output', type=FileType('w'), default='-', nargs='?',
         help='output file to write the generated shapes (default: stdout)')
     parser.add_argument('solution', type=FileType('w'), nargs='?',
-        help="output file to write the solution for the intersections of shapes (default: don't write)")
+        help="output file to write the solution for the intersections of shapes (default: don't solve)")
 
     parser.add_argument('-n', '--amount', metavar='INT', type=int, default=N,
         help=f'amount of shapes to generate (default: {N})')

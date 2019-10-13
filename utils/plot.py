@@ -1,5 +1,5 @@
 from shapes import Figure
-from format import read_prolog_list
+from plformat import read_prolog_list
 
 from itertools import cycle
 from matplotlib import pyplot
@@ -70,6 +70,8 @@ def main():
     pyplot.legend()
     pyplot.autoscale(True)
     pyplot.axis(option='equal')
+    pyplot.grid(which='both')
+    pyplot.minorticks_on()
 
     if outfile:
         pyplot.savefig(outfile)
