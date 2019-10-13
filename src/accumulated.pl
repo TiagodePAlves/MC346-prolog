@@ -15,18 +15,22 @@
 intersections(Shapes, Intersections, Length) :- !,
     intersections(Shapes, [], 0, Intersections, Length).
 
-intersections([This|Shapes], Acc, N, Accn, Nn) :- !,
+%!  intersections(+Shapes, +Acc, +AccLength, -Intersections, -IntersectionsLength) is det.
+intersections([This|Shapes], Acc, N, AccF, NF) :- !,
     intersections(This, Shapes, Acc, N, Accx, Nx),
-    intersections(Shapes, Accx, Nx, Accn, Nn).
+    intersections(Shapes, Accx, Nx, AccF, NF).
 intersections([], Acc, N, Acc, N) :- !.
 
-intersections(NameA: A, [NameB: B|Shapes], Acc, N, Accn, Nn) :- !,
-    (
-        A intersect_with B -> Accx = [NameA-NameB|Acc], Nx is N + 1
-        ; Accx = Acc, Nx is N
-    ),
-    intersections(NameA: A, Shapes, Accx, Nx, Accn, Nn).
+%!  intersections(+Shape, +Shapes, +Acc, +AccLength, -Intersections, -IntersectionsLength) is det.
+intersections(This, [Other|Shapes], Acc, N, AccF, NF) :- !,
+    intersections(This, Other, Acc, N, Accx, Nx),
+    intersections(This, Shapes, Accx, Nx, AccF, NF).
 intersections(_, [], Acc, N, Acc, N) :- !.
+
+%!  intersections(+Shape, +Shape, +Acc, +AccLength, -Intersections, -IntersectionsLength) is det.
+intersections(NameA: A, NameB: B, Acc, N, [NameA-NameB|Acc], NF) :-
+    A intersect_with B, !, NF is N + 1.
+intersections(_, _, Acc, N, Acc, N) :- !.
 
 
 
