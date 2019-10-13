@@ -74,7 +74,7 @@ time(Goal, Time) :-
 %   Roda Solver com Shapes marcando o tempo de execução.
 %   O resultado é escrito na saída atual.
 time_it(Shapes, Solver) :-
-    Goal =.. [Solver, Shapes, _Intersections],
+    Goal =.. [Solver, Shapes, _Intersections, _Length],
     format("~w:", Solver), nl,
     time(Goal, Time), retractall(shape(_, _)),
     format("  ~f s", Time), nl.
@@ -95,12 +95,12 @@ time_all(Options) :-
 %!  options(?Action, ?Key, ?Val) is multi.
 %
 %   Base de fatos de opções para cada Action de teste.
-% options(run_all, amount, X) :-
-%     member(X, [1, 5, 10, 15, 50, 100]).
-% options(run_all, max_dist, X) :-
-%     member(X, [1, 10, 100]).
-options(time_all, amount, 1000).
-    % member(X, [100, 500, 1000, 2000, 5000, 10000]).
+options(run_all, amount, X) :-
+    member(X, [1, 5, 10, 15, 50, 100]).
+options(run_all, max_dist, X) :-
+    member(X, [1, 10, 100]).
+options(time_all, amount, X) :-
+    member(X, [100, 500, 1000, 2000, 5000, 10000]).
 options(time_all, name_length, 12).
 
 %!  options(?Action, ?Option) is multi.

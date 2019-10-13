@@ -1,14 +1,6 @@
 :- use_module(library(intersections)).
 
 
-
-%!  intersection(?NameA, ?NameB)
-%
-%   Verdade se existe uma figura com nome NameA
-%   e outra com NameB e elas têm intersecção
-%   não vazia.
-:- dynamic(intersection/2, [thread(local)]).
-
 %!  shape(+Name, +Shape)
 %
 %   Verdade se existe uma figura Shape associada
@@ -19,11 +11,6 @@
 %
 %   Insere a figura no banco de dados e suas intersecções.
 insert_shape(Name, Shape) :-
-    foreach(shape(NameB, ShapeB), (
-        Shape intersect_with ShapeB ->
-            asserta(intersection(Name, NameB))
-        ; true
-    )),
     asserta(shape(Name, Shape)).
 
 %!  insert_shape(+NamedShape)
@@ -33,6 +20,16 @@ insert_shape(circ(Name, X, Y, R)) :-
     insert_shape(Name, circle((X, Y), R)).
 insert_shape(quad(Name, X, Y, R)) :-
     insert_shape(Name, square((X, Y), R)).
+
+
+%!  intersection(?NameA, ?NameB)
+%
+%   Verdade se existe uma figura com nome NameA
+%   e outra com NameB e elas têm intersecção
+%   não vazia.
+intersection(A, B) :-
+    shape(A, ShapeA), shape(B, ShapeB), A @< B,
+    ShapeA intersect_with ShapeB.
 
 
 %!  database_solver(+Figures, -Intersections, -Length) is det.

@@ -1,6 +1,8 @@
 :- module(helpers, [
     named_intersection/3,
-    as_shape/2
+    as_shape/2,
+    op(1050, xfy, ==>),
+    (==>)/2
 ]).
 :- use_module(intersections).
 
@@ -38,3 +40,12 @@ named_intersection(NameA: ShapeA, NameB: ShapeB, NameA - NameB) :-
 %   ==
 as_shape(circ(Name, X, Y, R), Name: circle((X, Y), R)).
 as_shape(quad(Name, X, Y, L), Name: square((X, Y), L)).
+
+
+%!  :Condition ==> :Action is det.
+%
+%   Implicação lógica. Funciona como (->)/2 mas
+%   continua sendo verdade se a condição é falsa.
+Condition ==> Action :-
+    \+ Condition, !
+    ; Action.

@@ -28,9 +28,4 @@ dbs :- run(dbs).
 %!  topo is semidet.
 %
 %   Resolve o problema com a entrada e saída padrão.
-topo :-
-    read(Figures),
-    solver(lst, Solver),
-    call(Solver, Figures, Intersections, Length),
-    writeln(Length),
-    maplist(writeln, Intersections).
+topo :- lst.
