@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tests.pl</title>
+
+<link rel="stylesheet" type="text/css" href="../pldoc.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+
+<h1 class="file"><span style="float:right"></span>tests.pl</h1>
+
+<dl>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="ordered/2"><b class="pred">ordered</b><var class="arglist">(+List, -Ordered)</var></a> is <b class="det">det</b></dt><dd class="defbody">Ordena os elementos de <var>List</var> internamente
+e a lista como um todo.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="run_it/3"><b class="pred">run_it</b><var class="arglist">(+Shapes, +Solution, +Solver)</var></a></dt><dd class="defbody">Roda <var>Solver</var> com <var>Shapes</var> e compara com <var>Solution</var>.
+O resultado é escrito na saída atual.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="run_all/1"><b class="pred">run_all</b><var class="arglist">(+Options)</var></a></dt><dd class="defbody">Gera um teste com <a href="generate.html#generate_test/3">generate_test/3</a> e <var>Options</var>. Aplica o teste
+em todos os solvers de <a href="/pldoc/doc_for?object=user%3Asolver/2">solver/2</a>, escrevendo o resultado na
+saída atual.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="/pldoc/doc_for?object=user%3Arun_it/3">run_it/3</a></dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="time/2"><b class="pred">time</b><var class="arglist">(:Goal, -Time)</var></a></dt><dd class="defbody">Chama <var>Goal</var> marcando o tempo de execução e
+retorna o tempo em <var>Time</var>, em segundos.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="time_it/2"><b class="pred">time_it</b><var class="arglist">(+Shapes, +Solver)</var></a></dt><dd class="defbody">Roda <var>Solver</var> com <var>Shapes</var> marcando o tempo de execução.
+O resultado é escrito na saída atual.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="time_all/1"><b class="pred">time_all</b><var class="arglist">(+Options)</var></a></dt><dd class="defbody">Gera um teste com <a href="generate.html#generate_test/3">generate_test/3</a> e <var>Options</var>. Aplica o teste
+em todos os solvers de <a href="/pldoc/doc_for?object=user%3Asolver/2">solver/2</a>, escrevendo o tempo de
+execução na saída atual.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a class="extmanual" href="http://www.swi-prolog.org/pldoc/man?predicate=time_it/3">time_it/3</a></dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="options/3"><b class="pred">options</b><var class="arglist">(?Action, ?Key, ?Val)</var></a> is <b class="det">multi</b></dt><dd class="defbody">Base de fatos de opções para cada <var>Action</var> de teste.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="options/2"><b class="pred">options</b><var class="arglist">(?Action, ?Option)</var></a> is <b class="det">multi</b></dt><dd class="defbody">Base de fatos de opções para cada <var>Action</var> de teste.
+Como em <a href="/pldoc/doc_for?object=user%3Aoptions/3">options/3</a>, mas as opções aqui são compostas
+no formato Key(Val).</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="action_options/2"><b class="pred">action_options</b><var class="arglist">(?Action, ?Options)</var></a> is <b class="det">multi</b></dt><dd class="defbody"><var>Options</var> é uma lista de opções encontradas com
+<a href="/pldoc/doc_for?object=user%3Aoptions/2">options/2</a>, com todas as chaves de <a href="/pldoc/doc_for?object=user%3Aoptions/3">options/3</a>
+relacionada com <var>Action</var> e cada chave é distinta.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="tests/0"><b class="pred">tests</b></a></dt><dd class="defbody">Roda os testes com todas as combinações de
+opções registradas em <a href="/pldoc/doc_for?object=user%3Aoptions/3">options/3</a>.</dd>
+</dl>
+
+</body>
+</html>

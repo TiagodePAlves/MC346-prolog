@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>generate.pl</title>
+
+<link rel="stylesheet" type="text/css" href="../pldoc.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+</head>
+<body>
+
+
+<h1 class="file"><span style="float:right"></span>generate.pl</h1>
+
+<dl>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="parse_option/2"><b class="pred">parse_option</b><var class="arglist">(+Option, -CmdArg)</var></a> is <b class="det">det</b></dt><dd class="defbody"><var>Option</var> pode ser:
+
+<table class="wiki">
+<tr><td><var>Option</var></td><td><var>CmdArg</var></td></tr>
+<tr><td>Key(Val, ...)</td><td>--Key Val ...</td></tr>
+<tr><td>Key</td><td>--Key</td></tr>
+<tr><td><code>solution(File)</code></td><td>File</td></tr>
+</table>
+
+<ul>
+<li>No caso, <code>solution(File)</code> é usada para indicar
+que a solução para o problema deve ser escrita
+no arquivo <code>File</code>.</li>
+</ul>
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="generate_test/3"><b class="pred">generate_test</b><var class="arglist">(+File, --Shapes, +Options)</var></a></dt><dd class="defbody">Gera dados de teste e salva em <var>File</var>. Os dados são
+unificados com <var>Shapes</var>.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- descrição de <var>Options</var> em <a href="generate.html#parse_option/2">parse_option/2</a></dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="generate_test/3"><b class="pred">generate_test</b><var class="arglist">(--Shapes, --Solution, +Options)</var></a></dt><dd class="defbody">Gera dados de teste e unifica com <var>Shapes</var>. A
+solução é unificada com <var>Solution</var>.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- descrição de <var>Options</var> em <a href="generate.html#parse_option/2">parse_option/2</a></dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="generate_test/2"><b class="pred">generate_test</b><var class="arglist">(--Shapes, --Solution)</var></a></dt><dd class="defbody">Mesmo que <code>generate_test(Shapes, Solution, [])</code>.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="generate.html#generate_test/3">generate_test/3</a></dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="generate_test/2"><b class="pred">generate_test</b><var class="arglist">(--Shapes, +Options)</var></a></dt><dd class="defbody">
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- <a href="generate.html#generate_test/3">generate_test/3</a></dd>
+</dl>
+
+</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="generate_test/5"><b class="pred">generate_test</b><var class="arglist">(+File, --Shapes, +SolFile, --Solution, +Options)</var></a></dt><dd class="defbody">Além de gerar o teste e salvar em <var>File</var>, também salva
+a solução em <var>SolFile</var>. O teste é unificado com <var>Shapes</var>
+e <var>Solution</var> com a solução.
+
+<dl class="tags">
+<dt class="keyword-see">See also</dt><dd class="keyword-see">- descrição de <var>Options</var> em <a href="generate.html#parse_option/2">parse_option/2</a></dd>
+</dl>
+
+</dd>
+</dl>
+
+</body>
+</html>

@@ -13,7 +13,16 @@
 <h1 class="file"><span style="float:right"></span>run.pl</h1>
 
 <dl>
-<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="solver/2"><b class="pred">solver</b><var class="arglist">(+Name, :Goal)</var></a> is <b class="det">det</b></dt><dd class="defbody">Seletor da solução.</dd>
+<dt class="pubdef"><span style="float:right">&nbsp;</span><a name="solver/2"><b class="pred">solver</b><var class="arglist">(+Name, -Solver)</var></a> is <b class="det">det</b></dt><dd class="defbody">Seletor da solução. As opções para <var>Name</var> são:
+
+<table class="wiki">
+<tr><td><var>Name</var></td><td><var>Solver</var></td></tr>
+<tr><td>acc</td><td><a class="extmanual" href="http://www.swi-prolog.org/pldoc/man?predicate=accumulated_solver/3">accumulated_solver/3</a></td></tr>
+<tr><td>lst</td><td><a class="extmanual" href="http://www.swi-prolog.org/pldoc/man?predicate=list_solver/3">list_solver/3</a></td></tr>
+<tr><td>dbs</td><td><a class="extmanual" href="http://www.swi-prolog.org/pldoc/man?predicate=database_solver/3">database_solver/3</a></td></tr>
+</table>
+
+</dd>
 <dt class="pubdef"><span style="float:right">&nbsp;</span><a name="topo/0"><b class="pred">topo</b></a> is <b class="det">semidet</b></dt><dd class="defbody">Resolve o problema com a entrada e saída padrão.</dd>
 </dl>
 
